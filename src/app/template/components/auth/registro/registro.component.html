@@ -1,0 +1,77 @@
+<div class="registro">
+   <img src="././././assets/images/login/imagenSubasta.png" alt="registro image" class="registro-img">
+  
+<form 
+[formGroup]="registroForm"
+
+class="registro-form"
+>
+<h1 class="registro-title">Registro</h1>
+
+<div class="registro-content">
+
+   <div class="registro-box">
+      <i class="ri-user-3-line registro-icon"></i>
+
+      <div class="registro-box-input">
+         <input type="text" required class="registro-input" id="registro-user" formControlName="name" placeholder="">
+         <label for="registro-user" class="registro-label">Nombre</label>
+      </div>
+   </div>
+
+   <div class="registro-box">
+      <i class="ri-user-3-line registro-icon"></i>
+
+      <div class="registro-box-input">
+         <input type="text" required class="registro-input" id="registro-user" formControlName="lastName" placeholder="">
+         <label for="registro-user" class="registro-label">Apellido</label>
+      </div>
+   </div>
+
+   <div class="registro-box">
+      <i class="ri-user-3-line registro-icon"></i>
+
+      <div class="registro-box-input">
+         <input type="mail" required class="registro-input" id="registro-user" formControlName="email" placeholder="">
+         <label for="registro-user" class="registro-label">Dirección de e-mail</label>
+      </div>
+   </div>
+
+   <div class="registro-box">
+      <i class="ri-user-3-line registro-icon"></i>
+
+      <div class="registro-box-input">
+         <input type="text" required class="registro-input" id="registro-user" formControlName="user" placeholder="">
+         <label for="registro-user" class="registro-label">Usuario</label>
+      </div>
+   </div>
+
+   <div class="registro-box">
+      <i class="ri-lock-2-line registro-icon"></i>
+
+      <div class="registro-box-input">
+         <input [type]="visible ? 'text' : 'password'" required class="registro-input" id="registro-pass" formControlName="password" placeholder="">
+         <label for="registro-pass" class="registro-label">Contraseña</label>
+         <i [ngClass]="!registroForm.value.password ? '' : visible ? 'pi pi-eye-slash' : 'pi pi-eye'" class="registro-eye" id="registro-eye" (click)="onClickPasswordEye()"></i>
+      </div>
+   </div>
+</div>
+
+
+
+
+
+
+<button 
+  type="submit" 
+  class="registro-button"
+  >
+  Registrar
+</button>
+
+<p class="login-register">
+   ¿Tienes ya una cuenta? <a [routerLink]="['/auth/login']" routerLinkActive="router-link-active" >Inicia Sesión</a>
+</p>
+</form>
+</div>
+

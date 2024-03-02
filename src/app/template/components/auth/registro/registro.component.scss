@@ -1,0 +1,201 @@
+$white-color: #fff;
+$black-color: #000;
+
+input,
+button {
+   border: none;
+   outline: none;
+}
+
+a {
+   text-decoration: none;
+}
+
+img {
+   max-width: 100%;
+   height: auto;
+}
+
+/*=============== registro ===============*/
+.registro {
+   color: $white-color;
+   position: relative;
+   height: 100vh;
+   display: grid;
+   align-items: center;
+
+   &-title {
+      color: $white-color;
+   }
+
+   &-img {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+   }
+
+   &-form {
+      position: relative;
+      //background-color: rgba(0, 0, 0, 0.2);
+      border: 2px solid rgba(255, 255, 255, 0.2);
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+      margin-inline: 1.5rem;
+      padding: 2.5rem 1.5rem;
+      border-radius: 20px;
+      backdrop-filter: blur(60px);
+   }
+
+   &-title {
+      text-align: center;
+      margin-bottom: 2rem;
+   }
+
+   &-content,
+   &-box {
+      display: grid;
+   }
+
+   &-content {
+      row-gap: 1.75rem;
+      margin-bottom: 1.5rem;
+   }
+
+   &-box {
+      grid-template-columns: max-content 1fr;
+      align-items: center;
+      column-gap: .75rem;
+      border-bottom: 2px solid $white-color;
+   }
+
+   &-icon,
+   &-eye {
+      font-size: 1.25rem;
+   }
+
+   &-input {
+      width: 100%;
+      padding-block: .8rem;
+      background: none;
+      color: $white-color;
+      position: relative;
+      z-index: 1;
+   }
+
+   &-box-input {
+      position: relative;
+   }
+
+   &-label {
+      position: absolute;
+      left: 0;
+      top: 13px;
+      transition: top .3s, font-size .3s;
+   }
+
+   &-eye {
+      position: absolute;
+      right: 5px;
+      top: 10px;
+      z-index: 10;
+      cursor: pointer;
+   }
+
+   &-box:nth-child(2) input {
+      padding-right: 1.8rem;
+   }
+
+   &-check,
+   &-check-group {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+   }
+
+   &-check {
+      margin-bottom: 1.5rem;
+   }
+
+   &-check-label,
+   &-forgot,
+   &-register {
+      font-size: .813rem;
+   }
+
+   &-check-group {
+      column-gap: .5rem;
+   }
+
+   &-check-input {
+      width: 16px;
+      height: 16px;
+   }
+
+   &-forgot {
+      color: $white-color;
+
+      &:hover {
+         text-decoration: underline;
+      }
+   }
+
+   &-button {
+      width: 100%;
+      padding: 1rem;
+      border-radius: 50px;
+      background-color: $white-color;
+      cursor: pointer;
+      margin-bottom: 2rem;
+   }
+
+   &-register {
+      text-align: center;
+
+      & a {
+         color: $white-color;
+         font-weight: 600;
+         &:hover {
+            text-decoration: underline;
+         }
+      }
+   }
+
+   &-info {
+      margin-bottom: 1.5rem;
+      .p-inline-message {     
+         width: 100%;
+         border-radius: 50px;
+      }
+   }
+}
+
+/* Input focus move up label */
+.registro-input:focus+.registro-label {
+   top: -12px;
+   font-size: .813rem;
+}
+
+/* Input focus sticky top label */
+.registro-input:not(:placeholder-shown).registro-input:not(:focus)+.registro-label {
+   top: -12px;
+   font-size: .813rem;
+}
+
+/*=============== BREAKPOINTS ===============*/
+/* For medium devices */
+@media screen and (min-width: 576px) {
+   .registro {
+      justify-content: center;
+
+      &-form {
+         width: 432px;
+         padding: 3rem;
+         border-radius: 1.5rem;
+      }
+
+      &-title {
+         font-size: 2rem;
+      }
+   }
+}
