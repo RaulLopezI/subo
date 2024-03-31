@@ -9,7 +9,7 @@ export const routes: Route[] = [
   { path: 'home', loadChildren: () => import('./home/home.routes').then((m) => m.routes), },
   /*{
     path: 'register',
-    loadComponent: () => import('./register/register.component'),
+    loadComponent: () => import('./register/register.componentaaa'),
   },*/
 
 ];
