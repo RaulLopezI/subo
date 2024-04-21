@@ -12,8 +12,8 @@ class="login-form"
       <i class="ri-user-3-line login-icon"></i>
 
       <div class="login-box-input">
-         <input type="text" required class="login-input" id="login-user" formControlName="user" placeholder="">
-         <label for="login-user" class="login-label">Usuario</label>
+         <input type="text" required class="login-input" id="login-user" formControlName="email" placeholder="">
+         <label for="login-user" class="login-label">Email</label>
       </div>
    </div>
 
@@ -45,8 +45,9 @@ class="login-form"
 
 <button 
   type="submit" 
-  [disabled]="loginStatus === 'authenticating'"
+  [disabled]="!loginForm.valid"
   class="login-button"
+  (click)="onSubmit()"
   >
   Iniciar sesión <i *ngIf="loginStatus === 'authenticating'" class="pi pi-spin pi-spinner"></i>
 </button>

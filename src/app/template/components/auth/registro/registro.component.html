@@ -14,17 +14,8 @@ class="registro-form"
       <i class="ri-user-3-line registro-icon"></i>
 
       <div class="registro-box-input">
-         <input type="text" required class="registro-input" id="registro-user" formControlName="name" placeholder="">
+         <input type="text" required class="registro-input" id="registro-user" formControlName="nombre" placeholder="">
          <label for="registro-user" class="registro-label">Nombre</label>
-      </div>
-   </div>
-
-   <div class="registro-box">
-      <i class="ri-user-3-line registro-icon"></i>
-
-      <div class="registro-box-input">
-         <input type="text" required class="registro-input" id="registro-user" formControlName="lastName" placeholder="">
-         <label for="registro-user" class="registro-label">Apellido</label>
       </div>
    </div>
 
@@ -37,14 +28,6 @@ class="registro-form"
       </div>
    </div>
 
-   <div class="registro-box">
-      <i class="ri-user-3-line registro-icon"></i>
-
-      <div class="registro-box-input">
-         <input type="text" required class="registro-input" id="registro-user" formControlName="user" placeholder="">
-         <label for="registro-user" class="registro-label">Usuario</label>
-      </div>
-   </div>
 
    <div class="registro-box">
       <i class="ri-lock-2-line registro-icon"></i>
@@ -64,7 +47,9 @@ class="registro-form"
 
 <button 
   type="submit" 
-  class="registro-button"
+  class="registro-button" 
+  [disabled]="!registroForm.valid"
+  (click)="onSubmit()"
   >
   Registrar
 </button>

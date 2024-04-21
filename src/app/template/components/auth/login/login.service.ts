@@ -19,7 +19,7 @@ export class LoginService {
   error$ = new Subject<any>();
   login$ = new Subject<Credentials>();
 
-  userAuthenticated$ = this.login$.pipe(
+ /*  userAuthenticated$ = this.login$.pipe(
     switchMap((credentials) =>
       this.authService.login(credentials).pipe(
         catchError((err) => {
@@ -29,7 +29,7 @@ export class LoginService {
       )
     )
   );
-
+ */
   // state
   private state = signal<LoginState>({
     status: 'pending',
@@ -40,11 +40,11 @@ export class LoginService {
 
   constructor() {
     // reducers
-    this.userAuthenticated$
+   /*  this.userAuthenticated$
       .pipe(takeUntilDestroyed())
       .subscribe(() =>
         this.state.update((state) => ({ ...state, status: 'success' }))
-      );
+      ); */
 
     this.login$
       .pipe(takeUntilDestroyed())
@@ -58,4 +58,6 @@ export class LoginService {
         this.state.update((state) => ({ ...state, status: 'error' }))
       );
   }
+
+ 
 }

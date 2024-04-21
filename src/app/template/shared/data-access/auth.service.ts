@@ -1,7 +1,7 @@
+
 import { Injectable, computed, inject, signal } from '@angular/core';
-import { defer } from 'rxjs';
-import { Credentials } from '../interfaces/credentials';
 import { HttpClient } from '@angular/common/http';
+import { Observable, tap } from 'rxjs';
 
 export type AuthUser = User | null | undefined;
 interface User {
@@ -26,39 +26,27 @@ export class AuthService {
   // selector
   user = computed(() => this.state().user);
 
-  login(credentials: Credentials) {
-    //suponemos que llega lo siguiente 
-    let userTest: User = { username: 'user' };
 
 
 
-    return defer(() =>
-      // De normal seria el resultado del post
-      //this.http.post<any>('api/auth/login', credentials)
 
-      // Ejemplo sin post
-      new Promise((resolve) => {
-        setTimeout(() => {
 
-          // Habría que ver como hacemos el tema de mantener conectado al usuario 
-          // y como recepcionamos los datos, de momento actualizaremos aqui el state
-          this.state.update((state) => ({
-            ...state,
-            user: userTest
-          }));
+  constructor() {
 
-          resolve(() => userTest)
-        }, 3000)
+  }
+
+  login(formData: any):Observable<any> {
+    return this.http.post<any>('http://localhost:3000/api/login', formData).pipe(
+      tap(res => {
+        localStorage.setItem('token', res.token)
       })
-    );
+    )
   }
-
-  logout() {
-  }
-
-  createAccount(credentials: Credentials) {
-    return defer(() =>
-      this.http.post<any>('api/auth/register', credentials)
-    );
+  registro(formData: any):Observable<any>{
+    return this.http.post<any>('http://localhost:3000/api/usuarios', formData).pipe(
+      tap(res => {
+        localStorage.setItem('token', res.token)
+      })
+    )
   }
 }

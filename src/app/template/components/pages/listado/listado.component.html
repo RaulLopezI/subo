@@ -1,0 +1,10 @@
+<div *ngFor="let product of products">
+  <p-card>
+    <ng-template pTemplate="title">
+      {{product.name}}
+    </ng-template>
+    <img [src]="product.image" alt="Producto">
+    <p>{{product.price | currency}}</p>
+    <button pButton type="button" label="Pujar"></button>
+  </p-card>
+</div>
