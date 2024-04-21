@@ -6,11 +6,13 @@ export const isAuthenticatedGuard = (): CanActivateFn => {
   return () => {
     const authService = inject(AuthService);
     const router = inject(Router);
-    return true
-   /*  if (authService.user()) {
+
+    if (localStorage.getItem("token")) {
       return true;
+    } else {
+      return router.parseUrl('auth/login');
     }
 
-    return router.parseUrl('auth/login'); */
+
   };
 };
