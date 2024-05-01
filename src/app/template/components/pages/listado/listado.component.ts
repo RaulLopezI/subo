@@ -1,6 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CardModule } from 'primeng/card';
+import { ProductoService } from 'src/app/template/shared/data-access/producto.service';
+import { Producto } from 'src/app/template/shared/interfaces/producto';
+import { ButtonModule } from 'primeng/button';
 
 interface Product {
   name: string;
@@ -12,7 +15,8 @@ interface Product {
   standalone: true,
   imports: [
     CommonModule,
-    CardModule
+    CardModule,
+    ButtonModule
   ],
   templateUrl: './listado.component.html',
   styleUrls: ['./listado.component.scss']
@@ -23,4 +27,19 @@ export class ListadoComponent {
     { name: 'Producto 2', price: 150, image: 'url_a_la_imagen_2.jpg' },
     { name: 'Producto 3', price: 200, image: 'url_a_la_imagen_3.jpg' }
   ];
+
+  productos!: Producto[]
+  productosService = inject(ProductoService)
+
+  constructor() {
+    this.getProductos()
+  }
+
+  getProductos() {
+    this.productosService.get().subscribe(productos=> {
+      if (productos.ok) {
+        this.productos = productos.productos
+      }
+    })
+  }
 }

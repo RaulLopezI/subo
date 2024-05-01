@@ -24,7 +24,23 @@ export class MenuComponent {
                   { label: 'Dashboard', icon: 'pi pi-fw pi-home', routerLink: ['/'] }
               ]
           },
-          
+          {
+              label: 'Productos',
+              icon: 'pi pi-fw pi-briefcase',
+              items: [
+                  {
+                      label: 'SUBO',
+                      icon: 'pi pi-fw pi-globe',
+                      routerLink: ['/listado']
+                  },
+                  {
+                      label: 'Mis Productos',
+                      icon: 'pi pi-fw pi-user',
+                      routerLink: ['/pages/crud']
+                  },
+              ]
+          },
+
       ];
   }
 
