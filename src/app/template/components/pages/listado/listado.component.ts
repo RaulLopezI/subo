@@ -25,7 +25,8 @@ export class ListadoComponent {
   products: Product[] = [
     { name: 'Producto 1', price: 100, image: 'url_a_la_imagen_1.jpg' },
     { name: 'Producto 2', price: 150, image: 'url_a_la_imagen_2.jpg' },
-    { name: 'Producto 3', price: 200, image: 'url_a_la_imagen_3.jpg' }
+    { name: 'Producto 3', price: 200, image: 'url_a_la_imagen_3.jpg' },
+    { name: 'Producto 4', price: 250, image: 'url_a_la_imagen_4.jpg' }
   ];
 
   productos!: Producto[]
