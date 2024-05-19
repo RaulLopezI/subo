@@ -14,15 +14,15 @@ export class ProductoService {
 constructor() { }
 
   get(): Observable<ProductoResponse> {
-    console.log(this.productoURL);
-
-    return this.http.get<ProductoResponse>("https://suboback.onrender.com/api/producto")
+    return this.http.get<ProductoResponse>("http://localhost:3000/api/producto")
   }
 
-  getId(id: string) {
-    return this.http.get("https://suboback.onrender.com/api/producto",
-      {params: {id} }
-    )
+  getId(id: string): Observable<ProductoResponse> {
+    return this.http.get<ProductoResponse>("http://localhost:3000/api/producto/" + id)
+  }
+
+  create(producto: Producto) {
+    return this.http.post("http://localhost:3000/api/producto", producto)
   }
 
 }

@@ -36,7 +36,7 @@ export class AuthService {
   }
 
   login(formData: any):Observable<any> {
-    return this.http.post<any>("https://suboback.onrender.com/api/login", formData).pipe(
+    return this.http.post<any>("http://localhost:3000/api/login", formData).pipe(
       tap(res => {
         localStorage.setItem('token', res.token)
         localStorage.setItem('idUser', res.id)
@@ -44,7 +44,7 @@ export class AuthService {
     )
   }
   registro(formData: any):Observable<any>{
-    return this.http.post<any>("https://suboback.onrender.com/api/usuarios", formData).pipe(
+    return this.http.post<any>("http://localhost:3000/api/usuarios", formData).pipe(
       tap(res => {
         localStorage.setItem('token', res.token)
       })

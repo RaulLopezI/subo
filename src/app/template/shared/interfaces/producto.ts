@@ -1,9 +1,13 @@
 export interface Producto {
   nombre: string,
-  usuario: any
- }
+  descripcion: string,
+  pujaInicial: number
+  puja: number
+  cerrado: Boolean,
+  usuario: any,
+}
 
- export interface ProductoResponse {
-    ok: boolean,
-    productos: Producto[]
- }
+export interface ProductoResponse {
+  ok: boolean,
+  productos: Producto[]
+}

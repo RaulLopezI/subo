@@ -36,7 +36,7 @@ export class MenuComponent {
                   {
                       label: 'Mis Productos',
                       icon: 'pi pi-fw pi-user',
-                      routerLink: ['/pages/crud']
+                      routerLink: ['/mis-productos']
                   },
               ]
           },

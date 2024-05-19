@@ -1,8 +1,19 @@
-<div *ngFor="let producto of productos">
-  <p-card>
-    <ng-template pTemplate="title">
-      {{producto.nombre}}
+<div class="flex">
+
+  <p-card *ngFor="let producto of productos" [header]="producto.nombre" [style]="{ width: '360px', margin: '10px' }">
+    <ng-template pTemplate="header">
+        <img alt="Card" src="https://primefaces.org/cdn/primeng/images/usercard.png" />
     </ng-template>
-    <button pButton type="button" label="Pujar"></button>
-  </p-card>
+    <p>
+       {{producto.descripcion}}
+    </p>
+    <p>
+      Puja actual: <span *ngIf="producto.puja > producto.pujaInicial">{{producto.puja}}</span> <span *ngIf="producto.pujaInicial > producto.puja">{{producto.pujaInicial}}</span>
+    </p>
+    <ng-template pTemplate="footer">
+        <p-inputNumber mode="currency" inputId="pujaInicial" currency="EUR" locale="es-ES"> </p-inputNumber>
+        <p-button class="btn-puja" label="Pujar" icon="pi pi-check"></p-button>
+    </ng-template>
+</p-card>
+
 </div>

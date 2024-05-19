@@ -8,6 +8,6 @@ export const routes: Route[] = [
   },
   { path: 'home', loadChildren: () => import('./home/home.routes').then((m) => m.routes), },
   { path: 'listado', loadChildren: () => import('./listado/listado.routes').then((m) => m.routes), },
-
+  { path: 'mis-productos', loadChildren: () => import('./mis-productos/mis-productos.routes').then((m) => m.routes), },
 
 ];
