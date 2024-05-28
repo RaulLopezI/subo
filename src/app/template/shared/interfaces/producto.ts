@@ -5,6 +5,10 @@ export interface Producto {
   puja: number
   cerrado: Boolean,
   usuario: any,
+  pujante: any,
+  img: string,
+  id?: string,
+  _id?: string
 }
 
 export interface ProductoResponse {

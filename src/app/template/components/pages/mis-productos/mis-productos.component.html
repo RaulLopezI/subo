@@ -1,37 +1,45 @@
 <button pButton type="button" label="Subir producto"
   (click)="visible = true;"></button>
-  <div class="flex">
+<div class="flex">
 
-      <p-card *ngFor="let producto of productos" [header]="producto.nombre" [subheader]="producto.puja.toString()" [style]="{ width: '360px', margin: '10px' }">
-        <ng-template pTemplate="header">
-            <img alt="Card" src="https://primefaces.org/cdn/primeng/images/usercard.png" />
-        </ng-template>
-        <p>
-           {{producto.descripcion}}
-        </p>
-        <ng-template pTemplate="footer">
-            <p-button label="Cerrar" icon="pi pi-check"></p-button>
-        </ng-template>
-    </p-card>
+  <p-card *ngFor="let producto of productos" [header]="producto.nombre"
+    [subheader]="producto.puja.toString()"
+    [style]="{ width: '360px', margin: '10px' }">
+    <ng-template pTemplate="header">
+      <img alt="Card" [src]="producto.img" />
+    </ng-template>
+    <p>
+      {{producto.descripcion}}
+    </p>
+    <ng-template pTemplate="footer">
+      <p-chip *ngIf="producto.cerrado" label="Cerrada"></p-chip>
+      <p-button *ngIf="!producto.cerrado" (click)="cerrar(producto)" label="Cerrar" icon="pi pi-check"></p-button>
+    </ng-template>
+  </p-card>
 
-  </div>
-
+</div>
 
 <p-dialog header="Nuevo producto" [(visible)]="visible"
   [style]="{width: '50vw'}" (onHide)="visible = false; productoForm.reset()">
   <form [formGroup]="productoForm">
+    <p-fileUpload
+    mode="basic"
+    (onSelect)="onSelect($event)">
+  </p-fileUpload>
     <div class="flex flex-column gap-2">
       <label htmlFor="nombre">Nombre:</label>
       <input pInputText id="nombre" formControlName="nombre" />
     </div>
     <div class="flex flex-column gap-2">
       <label for="pujaInicial">Puja Inicial</label>
-      <p-inputNumber formControlName="pujaInicial" mode="currency" inputId="pujaInicial" currency="EUR" locale="es-ES"> </p-inputNumber>
-  </div>
+      <input pInputText formControlName="inicial" inputId="pujaInicial">
+    </div>
     <div class="flex flex-column gap-2">
       <label htmlFor="descripcion">Descripcion:</label>
-      <textarea rows="5" cols="30" id="descripcion" pInputTextarea formControlName="descripcion"></textarea>
+      <textarea rows="5" cols="30" id="descripcion" pInputTextarea
+        formControlName="descripcion"></textarea>
     </div>
   </form>
-  <button pButton [disabled]="!productoForm.valid" type="button" label="Crear" (click)="crearProducto()"></button>
+  <button pButton [disabled]="!productoForm.valid" type="button" label="Crear"
+    (click)="crearProducto()"></button>
 </p-dialog>

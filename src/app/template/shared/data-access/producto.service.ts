@@ -25,4 +25,8 @@ constructor() { }
     return this.http.post("http://localhost:3000/api/producto", producto)
   }
 
+  put(producto: Producto) {
+    return this.http.put("http://localhost:3000/api/producto/" + producto.id, producto)
+  }
+
 }

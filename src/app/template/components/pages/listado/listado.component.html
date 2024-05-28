@@ -2,7 +2,7 @@
 
   <p-card *ngFor="let producto of productos" [header]="producto.nombre" [style]="{ width: '360px', margin: '10px' }">
     <ng-template pTemplate="header">
-        <img alt="Card" src="https://primefaces.org/cdn/primeng/images/usercard.png" />
+        <img alt="Card" [src]="producto.img" />
     </ng-template>
     <p>
        {{producto.descripcion}}
@@ -11,8 +11,8 @@
       Puja actual: <span *ngIf="producto.puja > producto.pujaInicial">{{producto.puja}}</span> <span *ngIf="producto.pujaInicial > producto.puja">{{producto.pujaInicial}}</span>
     </p>
     <ng-template pTemplate="footer">
-        <p-inputNumber mode="currency" inputId="pujaInicial" currency="EUR" locale="es-ES"> </p-inputNumber>
-        <p-button class="btn-puja" label="Pujar" icon="pi pi-check"></p-button>
+        <input pInputText [(ngModel)]="puja" inputId="pujaInicial">
+        <p-button class="btn-puja" label="Pujar" icon="pi pi-check" (click)="pujar(producto)"></p-button>
     </ng-template>
 </p-card>
 

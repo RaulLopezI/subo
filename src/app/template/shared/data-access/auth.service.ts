@@ -44,10 +44,6 @@ export class AuthService {
     )
   }
   registro(formData: any):Observable<any>{
-    return this.http.post<any>("http://localhost:3000/api/usuarios", formData).pipe(
-      tap(res => {
-        localStorage.setItem('token', res.token)
-      })
-    )
+    return this.http.post<any>("http://localhost:3000/api/usuarios", formData)
   }
 }

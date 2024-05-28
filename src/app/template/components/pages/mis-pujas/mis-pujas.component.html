@@ -1,0 +1,26 @@
+<div class="flex">
+
+  <p-card *ngFor="let producto of pujas" [header]="producto.nombre" [style]="{ width: '360px', margin: '10px' }">
+    <ng-template pTemplate="header">
+        <img alt="Card" [src]="producto.img" />
+    </ng-template>
+    <p>
+       {{producto.descripcion}}
+    </p>
+    <p>
+      Puja actual: <span *ngIf="producto.puja > producto.pujaInicial">{{producto.puja}}</span> <span *ngIf="producto.pujaInicial > producto.puja">{{producto.pujaInicial}}</span>
+    </p>
+    <p>
+      <span *ngIf="!producto.cerrado && !(idUser === producto.pujante)" style="color: #d56464;">No es tuya</span>
+    </p>
+    <ng-template pTemplate="footer">
+      <p>
+        <span *ngIf="idUser === producto.pujante" style="color: #64d5b6;">Es tuya</span>
+      </p>
+        <input pInputText  *ngIf="!producto.cerrado && !(idUser === producto.pujante)" [(ngModel)]="puja" inputId="pujaInicial" >
+        <p-button  *ngIf="!producto.cerrado && !(idUser === producto.pujante)" (click)="pujar(producto)" class="btn-puja" label="Pujar" icon="pi pi-check"></p-button>
+        <p-chip *ngIf="producto.cerrado" label="Cerrada"></p-chip>
+    </ng-template>
+</p-card>
+
+</div>

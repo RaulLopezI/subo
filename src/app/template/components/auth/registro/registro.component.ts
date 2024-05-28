@@ -38,7 +38,7 @@ export class RegistroComponent {
 
   onSubmit() {
     this.authService.registro(this.registroForm.value).subscribe(() => {
-      this.router.navigate(['listado'])
+      this.router.navigate(['auth'])
     })
   }
 

@@ -19,12 +19,6 @@ export class MenuComponent {
   ngOnInit() {
       this.model = [
           {
-              label: 'Home',
-              items: [
-                  { label: 'Dashboard', icon: 'pi pi-fw pi-home', routerLink: ['/'] }
-              ]
-          },
-          {
               label: 'Productos',
               icon: 'pi pi-fw pi-briefcase',
               items: [
@@ -37,6 +31,11 @@ export class MenuComponent {
                       label: 'Mis Productos',
                       icon: 'pi pi-fw pi-user',
                       routerLink: ['/mis-productos']
+                  },
+                  {
+                      label: 'Mis Pujas',
+                      icon: 'pi pi-fw pi-user',
+                      routerLink: ['/mis-pujas']
                   },
               ]
           },

@@ -9,9 +9,9 @@ import { DialogModule } from 'primeng/dialog';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { InputTextModule } from 'primeng/inputtext';
 import { catchError, throwError } from 'rxjs';
-import { InputNumberModule } from 'primeng/inputnumber';
 import { InputTextareaModule } from 'primeng/inputtextarea';
-
+import { FileUploadModule } from 'primeng/fileupload';
+import { ChipModule } from 'primeng/chip';
 @Component({
   selector: 'app-mis-productos',
   standalone: true,
@@ -22,8 +22,9 @@ import { InputTextareaModule } from 'primeng/inputtextarea';
     DialogModule,
     ReactiveFormsModule,
     InputTextModule,
-    InputNumberModule,
-    InputTextareaModule
+    InputTextareaModule,
+    FileUploadModule,
+    ChipModule
   ],
   templateUrl: './mis-productos.component.html',
   styleUrls: ['./mis-productos.component.scss']
@@ -38,11 +39,30 @@ export class MisProductosComponent {
   public productos!: Producto[]
   public visible: boolean = false
   public productoForm!: FormGroup
-
+  file: string = ""
 
   constructor() {
     this.inicializarForm()
     this.getProductos()
+  }
+
+  onSelect(event: any) {
+    const file = event.files[0];
+    this.convertFileToBase64(file).then((base64: string) => {
+      this.file = base64
+      // Puedes usar el string base64 como necesites aquí
+    }).catch(error => {
+      console.error('Error converting file to base64:', error);
+    });
+  }
+
+  convertFileToBase64(file: File): Promise<string> {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = () => resolve(reader.result as string);
+      reader.onerror = error => reject(error);
+    });
   }
 
 
@@ -57,7 +77,7 @@ export class MisProductosComponent {
   inicializarForm() {
     this.productoForm = this.fb.group({
       nombre: ["", Validators.required],
-      pujaInicial: [0, Validators.required],
+      inicial: [null, Validators.required],
       descripcion: ["", Validators.required]
     })
   }
@@ -69,7 +89,9 @@ export class MisProductosComponent {
       cerrado: false,
       puja: 0,
       descripcion: this.productoForm.value.descripcion,
-      pujaInicial: this.productoForm.value.pujaInicial
+      pujaInicial: this.productoForm.value.inicial,
+      pujante: null,
+      img: this.file
     }
 
     this.productoService.create(producto).pipe(
@@ -85,5 +107,10 @@ export class MisProductosComponent {
       this.visible = false;
       this.productoForm.reset()
     })
+  }
+
+  cerrar(producto: Producto) {
+    producto.cerrado = true;
+    this.productoService.put(producto).subscribe(()=> this.mensajesService.add({ severity: 'success', summary: '', detail: "La puja ha sido cerrada con exitosa" }))
   }
 }
