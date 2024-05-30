@@ -14,19 +14,19 @@ export class ProductoService {
 constructor() { }
 
   get(): Observable<ProductoResponse> {
-    return this.http.get<ProductoResponse>("http://localhost:3000/api/producto")
+    return this.http.get<ProductoResponse>("https://suboback.onrender.com/api/producto")
   }
 
   getId(id: string): Observable<ProductoResponse> {
-    return this.http.get<ProductoResponse>("http://localhost:3000/api/producto/" + id)
+    return this.http.get<ProductoResponse>("https://suboback.onrender.com/api/producto/" + id)
   }
 
   create(producto: Producto) {
-    return this.http.post("http://localhost:3000/api/producto", producto)
+    return this.http.post("https://suboback.onrender.com/api/producto", producto)
   }
 
   put(producto: Producto) {
-    return this.http.put("http://localhost:3000/api/producto/" + producto.id, producto)
+    return this.http.put("https://suboback.onrender.com/api/producto/" + producto.id, producto)
   }
 
 }

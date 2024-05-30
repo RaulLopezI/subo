@@ -13,10 +13,10 @@ export class PujasService {
   pujasURL = this.baseUrl + enviroment.pujas
 constructor() { }
   getId(id: string): Observable<PujaResponse> {
-    return this.http.get<PujaResponse>("http://localhost:3000/api/pujas/" + id)
+    return this.http.get<PujaResponse>("https://suboback.onrender.com/api/pujas/" + id)
   }
 
   create(puja: Puja): Observable<PujaResponse> {
-    return this.http.post<PujaResponse>("http://localhost:3000/api/pujas", puja)
+    return this.http.post<PujaResponse>("https://suboback.onrender.com/api/pujas", puja)
   }
 }
